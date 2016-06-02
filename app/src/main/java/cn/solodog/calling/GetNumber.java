@@ -20,11 +20,15 @@ public class GetNumber {
         Cursor cursor=context.getContentResolver().query(Phone.CONTENT_URI,null,null,null,null);
         String phoneNumber;
         String phoneName;
+        String phoneFirst;
+        FirstLetterUtil firstLetterUtil=new FirstLetterUtil();
         while (cursor.moveToNext())
         {
             phoneName=cursor.getString(cursor.getColumnIndex(Phone.DISPLAY_NAME));
             phoneNumber=cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
-            PhoneInfo info=new PhoneInfo(phoneName,phoneNumber);
+            phoneFirst=firstLetterUtil.getFirstLetter(phoneName);
+            PhoneInfo info=new PhoneInfo(phoneName,phoneNumber,phoneFirst);
+
             lists.add(info);
 
         }

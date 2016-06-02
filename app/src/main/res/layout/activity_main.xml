@@ -16,7 +16,10 @@
         android:textSize="34sp"
         android:textColor="@color/typocolor"
         android:textCursorDrawable="@drawable/color_cursor"
-        android:background="@drawable/edit_bg" />
+        android:background="@drawable/edit_bg"
+        android:inputType="phone"
+        android:singleLine="true"
+        android:imeOptions="actionNone"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="4dp"
