@@ -42,4 +42,12 @@ public class GetNumber {
     {
         return lists.get(position).getPhoneName();
     }
+    public static String getFrist(int position)
+    {
+        return lists.get(position).getPhoneFirst();
+    }
+    public static PhoneInfo getinfo(int position)
+    {
+        return lists.get(position);
+    }
 }
