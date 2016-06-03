@@ -6,13 +6,17 @@ package cn.solodog.calling;
 public class PhoneInfo {
     private String phoneName;
     private String phoneNumber;
-    private String phoneFirst;
+    private String phoneFirstl;
+    private String phoneFirstn;
 
-    public PhoneInfo(String phoneName,String phoneNumber,String phoneFirst)
+
+    public PhoneInfo(String phoneName,String phoneNumber,String phoneFirstl,String phoneFirstn)
     {
         setPhoneName(phoneName);
         setPhoneNumber(phoneNumber);
-        setPhoneFirst(phoneFirst);
+        setPhoneFirstl(phoneFirstl);
+        setPhoneFirstn(phoneFirstn);
+
     }
 
     public void setPhoneName(String phoneName) {
@@ -31,11 +35,19 @@ public class PhoneInfo {
         return phoneNumber;
     }
 
-    public void setPhoneFirst(String phoneFirst) {
-        this.phoneFirst = phoneFirst;
+    public void setPhoneFirstl(String phoneFirstl) {
+        this.phoneFirstl = phoneFirstl;
     }
 
-    public String getPhoneFirst() {
-        return phoneFirst;
+    public String getphoneFirstl() {
+        return phoneFirstl;
+    }
+
+    public void setPhoneFirstn(String phoneFirstn) {
+        this.phoneFirstn = phoneFirstn;
+    }
+
+    public String getPhoneFirstn() {
+        return phoneFirstn;
     }
 }

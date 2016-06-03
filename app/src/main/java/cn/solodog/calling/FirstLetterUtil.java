@@ -35,7 +35,30 @@ public class FirstLetterUtil {
         int i;
         try {
             for (i = 0; i < StrLength; i++) {
+                if (str.charAt(i)=='涓')
+                {
+                    result+='j';
+                }
+                else if (str.charAt(i)=='楠')
+                {
+                    result+='n';
+                }
+                else if (str.charAt(i)=='睿')
+                {
+                    result+='r';
+                }
+                else if (str.charAt(i)=='栩'||str.charAt(i)=='璇'||str.charAt(i)=='鑫')
+                {
+                    result+='x';
+                }
+                else if (str.charAt(i)=='晔'||str.charAt(i)=='钰')
+                {
+                    result+='y';
+                }
+
+                else{
                 result += Char2Initial(str.charAt(i));
+            }
             }
         } catch (Exception e) {
             result = "";

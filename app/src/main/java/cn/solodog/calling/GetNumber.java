@@ -20,34 +20,23 @@ public class GetNumber {
         Cursor cursor=context.getContentResolver().query(Phone.CONTENT_URI,null,null,null,null);
         String phoneNumber;
         String phoneName;
-        String phoneFirst;
+        String phoneFirstl;
+        String phoneFirstn=null;
         FirstLetterUtil firstLetterUtil=new FirstLetterUtil();
+        ConvertFristletter convertFristletter=new ConvertFristletter();
         while (cursor.moveToNext())
         {
             phoneName=cursor.getString(cursor.getColumnIndex(Phone.DISPLAY_NAME));
             phoneNumber=cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
-            phoneFirst=firstLetterUtil.getFirstLetter(phoneName);
-            PhoneInfo info=new PhoneInfo(phoneName,phoneNumber,phoneFirst);
+            phoneFirstl=firstLetterUtil.getFirstLetter(phoneName);
+            phoneFirstn=convertFristletter.convert(phoneFirstl);
+            PhoneInfo info=new PhoneInfo(phoneName,phoneNumber,phoneFirstl,phoneFirstn);
 
             lists.add(info);
 
         }
         return null;
     }
-    public static String getnum(int position)
-    {
-        return lists.get(position).getPhoneNumber();
-    }
-    public static String getname(int position)
-    {
-        return lists.get(position).getPhoneName();
-    }
-    public static String getFrist(int position)
-    {
-        return lists.get(position).getPhoneFirst();
-    }
-    public static PhoneInfo getinfo(int position)
-    {
-        return lists.get(position);
-    }
+
+
 }
