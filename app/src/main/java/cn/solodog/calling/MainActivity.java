@@ -164,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
         {
             Map<String,Object> tmpp=new HashMap<String,Object>();
             String first=GetNumber.lists.get(i).getPhoneFirstn();
-            if (first.contains(keys))
+            String number=GetNumber.lists.get(i).getPhoneNumber();
+            if (first.contains(keys)||number.contains(keys))
             {
                 tmpp.put("names",GetNumber.lists.get(i).getPhoneName());
                 tmpp.put("numbers",GetNumber.lists.get(i).getPhoneNumber());
