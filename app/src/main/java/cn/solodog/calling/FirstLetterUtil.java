@@ -1,7 +1,7 @@
 package cn.solodog.calling;
 
 /**
- * Created by 7 on 2016/6/2.
+ * Copied by 7 on 2016/6/2.
  */
 public class FirstLetterUtil {
     private static int BEGIN = 45217;

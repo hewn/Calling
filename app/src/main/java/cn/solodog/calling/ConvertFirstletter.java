@@ -3,8 +3,8 @@ package cn.solodog.calling;
 /**
  * Created by 7 on 2016/6/3.
  */
-public class ConvertFristletter {
-
+public class ConvertFirstletter {
+//转换电话本首字母变成数字，如qwe换成793
     public String convert(String Fristletter)
     {
         String numletter ="";
