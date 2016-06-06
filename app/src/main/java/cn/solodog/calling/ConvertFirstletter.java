@@ -59,4 +59,95 @@ public class ConvertFirstletter {
 
         return numletter;
     }
+    //转换每个phoneinfo首字母的第一个字母为数字，为了排序
+    public static int convertF(String Fristletter)
+    {
+        int numletter=0;
+
+            switch (Fristletter.charAt(0))
+            {
+                case 'a':
+                    numletter=0;
+                    break;
+                case 'b':
+                    numletter=1;
+                    break;
+                case 'c':
+                    numletter=2;
+                    break;
+                case 'd':
+                    numletter=3;
+                    break;
+                case 'e':
+                    numletter=4;
+                    break;
+                case 'f':
+                    numletter=5;
+                    break;
+                case 'g':
+                    numletter=6;
+                    break;
+                case 'h':
+                    numletter=7;
+                    break;
+                case 'i':
+                    numletter=8;
+                    break;
+                case 'j':
+                    numletter=9;
+                    break;
+                case 'k':
+                    numletter=10;
+                    break;
+                case 'l':
+                    numletter=11;
+                    break;
+                case 'm':
+                    numletter=12;
+                    break;
+                case 'n':
+                    numletter=13;
+                    break;
+                case 'o':
+                    numletter=14;
+                    break;
+                case 'p':
+                    numletter=15;
+                    break;
+                case 'q':
+                    numletter=16;
+                    break;
+                case 'r':
+                    numletter=17;
+                    break;
+                case 's':
+                    numletter=18;
+                    break;
+                case 't':
+                    numletter=19;
+                    break;
+                case 'u':
+                    numletter=20;
+                    break;
+                case 'v':
+                    numletter=21;
+                    break;
+                case 'w':
+                    numletter=22;
+                    break;
+                case 'x':
+                    numletter=23;
+                    break;
+                case 'y':
+                    numletter=24;
+                    break;
+                case 'z':
+                    numletter=25;
+                    break;
+
+            }
+
+
+        return numletter;
+    }
 }
