@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setAdapter();
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-              final Handler myhandler = new Handler() {
+        final Handler myhandler = new Handler() {
             @Override
             //handleMessage处理不同情况下的按钮动画
             public void handleMessage(Message msg) {
@@ -125,10 +125,14 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String fri = GetNumber.lists.get(position).getphoneFirstl() + GetNumber.lists.get(position).getPhoneFirstn();
-// /               Toast.makeText(MainActivity.this,fri, Toast.LENGTH_SHORT).show();
+                String num = null;
+                if (typonumberedit.getText().length() == 0) {
+                    num = GetNumber.lists.get(position).getPhoneNumber();
+                } else {
+                    num = listall.get(position).get("numbers").toString();
+                }
                 Toast.makeText(MainActivity.this, "拨号辣！！", Toast.LENGTH_SHORT).show();
-                String num = GetNumber.lists.get(position).getPhoneNumber();
+                Toast.makeText(MainActivity.this, num, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + num));
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "没权限", Toast.LENGTH_LONG).show();
@@ -158,9 +162,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
