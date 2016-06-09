@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -108,8 +109,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "没权限", Toast.LENGTH_LONG).show();
                     }
                     startActivity(intent);
+                    typonumberedit.setFocusable(false);
+                    typonumberedit.setFocusableInTouchMode(false);
+                    typonumberedit.requestFocus();
                     typonumberedit.setText("");
                     padflag = 0;
+                    myhandler.sendEmptyMessage(0x345);
                     //在有内容输入情况下拨号，重置输入框内容，修改padflag为0
                 } else {
                     typonumberedit.setFocusable(false);
@@ -131,16 +136,33 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     num = listall.get(position).get("numbers").toString();
                 }
+
                 Toast.makeText(MainActivity.this, "拨号辣！！", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, num, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + num));
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "没权限", Toast.LENGTH_LONG).show();
                 }
                 startActivity(intent);
+                padflag = 0;
+                myhandler.sendEmptyMessage(0x345);
             }
         });
         //点击listview内容拨号
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (padflag != 0) {
+                    typonumberedit.setFocusable(false);
+                    typonumberedit.setFocusableInTouchMode(false);
+                    typonumberedit.requestFocus();
+                    inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0, null);
+                    padflag = 0;
+                    myhandler.sendEmptyMessage(0x345);
+                }
+                return false;
+            }
+        });
+        //点击listview收回键盘
         typonumberedit.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -152,12 +174,44 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "没权限", Toast.LENGTH_LONG).show();
                     }
                     startActivity(intent);
+                    typonumberedit.setFocusable(false);
+                    typonumberedit.setFocusableInTouchMode(false);
+                    typonumberedit.requestFocus();
+                    typonumberedit.setText("");
+                    padflag = 0;
+                    myhandler.sendEmptyMessage(0x345);
+
                     return true;
                 }
                 return false;
             }
         });
         //回车拨号
+        typonumberedit.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (padflag == 0) {
+                    typonumberedit.setFocusable(true);
+                    typonumberedit.setFocusableInTouchMode(true);
+                    typonumberedit.requestFocus();
+                    inputManager.showSoftInput(typonumberedit, 0);
+                    padflag = 1;
+                    myhandler.sendEmptyMessage(0x123);
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            myhandler.sendEmptyMessage(0x234);
+
+                        }
+                    }, 300);
+                    //让edittext获取焦点，显示输入法，修改padflag为1，开启动画效果
+
+                }
+                return false;
+            }
+        });
+        //点击edit切换按钮以及出键盘
+
         typonumberedit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -177,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
             }
             //after内监控edittext内容，根据是否有内容选择不同的数据更新到adapter
         });
+
     }
 
 
@@ -246,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //关键字搜索电话本内容获取
+
 
 
     @Override
