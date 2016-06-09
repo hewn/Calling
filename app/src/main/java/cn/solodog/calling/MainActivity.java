@@ -54,21 +54,23 @@ public class MainActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 if (msg.what == 0x123) {
                     Animation fabcall = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fabcallgo);
-                    fabcall.setDuration(300);
+                    fabcall.setDuration(350);
                     fabcall.setFillAfter(true);
                     fab.startAnimation(fabcall);
                     //在edittext无焦点（键盘未弹出）下缩小动画
                 }
                 if (msg.what == 0x234) {
+                    fab.setImageResource(R.drawable.phone);
                     Animation fabcall = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fabcallcome);
-                    fabcall.setDuration(250);
+                    fabcall.setDuration(500);
                     fabcall.setFillAfter(true);
                     fab.startAnimation(fabcall);
                     //在edittext无焦点（键盘未弹出）下放大动画
                 }
                 if (msg.what == 0x345) {
+                    fab.setImageResource(R.drawable.pad);
                     Animation fabcall = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fabcallback);
-                    fabcall.setDuration(300);
+                    fabcall.setDuration(600);
                     fabcall.setFillAfter(true);
                     fab.startAnimation(fabcall);
                     //在edittext有焦点（键盘弹出）下回归动画
@@ -239,4 +241,10 @@ public class MainActivity extends AppCompatActivity {
     }
     //关键字搜索电话本内容获取
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.exit(0);
+    }
 }
